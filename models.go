@@ -90,6 +90,8 @@ type Gamer struct {
 	Bin         string             `json:"bin"`
 	GameId      string             `json:"game_id"`
 	CharacterId string             `json:"character_id"`
+	Name        string             `json:"name"`
+	ImageUrl    string             `json:"image_url"`
 	IsAlive     bool               `json:"is_alive"`
 	Actions     map[string]*Action `json:"actions"` // map of string (stepId) and Action
 }
