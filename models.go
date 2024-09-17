@@ -125,13 +125,13 @@ type CharacterPack struct {
 }
 
 type Character struct {
-	Bin         string   `json:"bin"`
-	TypeId      int      `json:"type_id"`
-	Name        string   `json:"name"`
-	ImageUrl    string   `json:"image_url"`
-	Description string   `json:"description"`
-	Abilities   []string `json:"abilities"`
-	Role        string   `json:"role"`
+	Bin         string    `json:"bin"`
+	TypeId      int       `json:"type_id"`
+	Name        string    `json:"name"`
+	ImageUrl    string    `json:"image_url"`
+	Description string    `json:"description"`
+	Abilities   []Ability `json:"abilities"`
+	Role        string    `json:"role"`
 }
 
 type Ability struct {
