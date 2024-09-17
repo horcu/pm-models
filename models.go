@@ -34,21 +34,22 @@ type Group struct {
 }
 
 type Game struct {
-	Bin               string            `json:"bin"`
-	Steps             map[string]*Step  `json:"steps"omitempty`
-	IsDaytime         bool              `json:"is_daytime", omitempty`
-	FirstDayCompleted bool              `json:"first_day_completed", omitempty`
-	CurrentStep       string            `json:"current_step"`
-	GroupId           string            `json:"group_id"`
-	Status            string            `json:"status"`
-	ServerName        string            `json:"server_name", omitempty`
-	ServerIP          string            `json:"server_ip", omitempty`
-	ServerPort        int               `json:"server_port", omitempty`
-	StartTime         string            `json:"start_time", omitempty`
-	EndTime           string            `json:"end_time", omitempty`
-	Creator           *Player           `json:"creator",  omitempty`
-	Invited           []string          `json:"invited", omitempty`
-	Gamers            map[string]*Gamer `json:"gamers", omitempty`
+	Bin               string                `json:"bin"`
+	Steps             map[string]*Step      `json:"steps"omitempty`
+	IsDaytime         bool                  `json:"is_daytime", omitempty`
+	FirstDayCompleted bool                  `json:"first_day_completed", omitempty`
+	CurrentStep       string                `json:"current_step"`
+	GroupId           string                `json:"group_id"`
+	Status            string                `json:"status"`
+	ServerName        string                `json:"server_name", omitempty`
+	ServerIP          string                `json:"server_ip", omitempty`
+	ServerPort        int                   `json:"server_port", omitempty`
+	StartTime         string                `json:"start_time", omitempty`
+	EndTime           string                `json:"end_time", omitempty`
+	Creator           *Player               `json:"creator",  omitempty`
+	Invited           []string              `json:"invited", omitempty`
+	Gamers            map[string]*Gamer     `json:"gamers", omitempty`
+	Characters        map[string]*Character `json:"characters" omitempty`
 }
 
 type Step struct {
