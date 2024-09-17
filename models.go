@@ -123,3 +123,25 @@ type Message struct {
 	VideoPath string `json:"video_path"omitempty`
 	TimeStamp string `json:"time_stamp"omitempty`
 }
+
+type CharacterPack struct {
+	Name       string `json:"name"`
+	OriginDate string `json:"origin_date"`
+	Creator    string `json:"creator"`
+	Characters []struct {
+		Bin         string   `json:"bin"`
+		TypeId      int      `json:"type_id"`
+		Name        string   `json:"name"`
+		ImageUrl    string   `json:"image_url"`
+		Description string   `json:"description"`
+		Abilities   []string `json:"abilities"`
+		Role        string   `json:"role"`
+	} `json:"characters"`
+}
+
+type Ability struct {
+	Bin       string `json:"bin"`
+	Name      string `json:"name"`
+	Character string `json:"character"`
+	Frequency string `json:"frequency"`
+}
