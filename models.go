@@ -13,13 +13,6 @@ type Invitation struct {
 	Declined   bool   `json:"declined"`
 }
 
-type Character struct {
-	Bin         string `json:"bin"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-	ImageURL    string `json:"img_url"`
-}
-
 type Player struct {
 	UserName    string                 `json:"user_name"`
 	Bin         string                 `json:"bin"`
@@ -125,18 +118,20 @@ type Message struct {
 }
 
 type CharacterPack struct {
-	Name       string `json:"name"`
-	OriginDate string `json:"origin_date"`
-	Creator    string `json:"creator"`
-	Characters []struct {
-		Bin         string   `json:"bin"`
-		TypeId      int      `json:"type_id"`
-		Name        string   `json:"name"`
-		ImageUrl    string   `json:"image_url"`
-		Description string   `json:"description"`
-		Abilities   []string `json:"abilities"`
-		Role        string   `json:"role"`
-	} `json:"characters"`
+	Name       string      `json:"name"`
+	OriginDate string      `json:"origin_date"`
+	Creator    string      `json:"creator"`
+	Characters []Character `json:"characters"`
+}
+
+type Character struct {
+	Bin         string   `json:"bin"`
+	TypeId      int      `json:"type_id"`
+	Name        string   `json:"name"`
+	ImageUrl    string   `json:"image_url"`
+	Description string   `json:"description"`
+	Abilities   []string `json:"abilities"`
+	Role        string   `json:"role"`
 }
 
 type Ability struct {
