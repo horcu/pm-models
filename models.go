@@ -88,7 +88,7 @@ type Gamer struct {
 	ImageUrl     string             `json:"image_url"`
 	CharImageUrl string             `json:"char_image_url"`
 	IsAlive      bool               `json:"is_alive"`
-	Actions      map[string]*Action `json:"actions"` // map of string (stepId) and Action
+	Actions      map[string]*Action `json:"actions"omitempty` // map of string (stepId) and Action
 }
 
 type Action struct {
@@ -119,10 +119,10 @@ type Message struct {
 }
 
 type CharacterPack struct {
-	Name       string      `json:"name"`
-	OriginDate string      `json:"origin_date"`
-	Creator    string      `json:"creator"`
-	Characters []Character `json:"characters"`
+	Name       string       `json:"name"`
+	OriginDate string       `json:"origin_date"`
+	Creator    string       `json:"creator"`
+	Characters []*Character `json:"characters"omitempty`
 }
 
 type Character struct {
@@ -131,7 +131,7 @@ type Character struct {
 	Name        string   `json:"name"`
 	ImageUrl    string   `json:"image_url"`
 	Description string   `json:"description"`
-	Abilities   []string `json:"abilities"`
+	Abilities   []string `json:"abilities"omitempty`
 	Role        string   `json:"role"`
 }
 
