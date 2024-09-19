@@ -87,7 +87,7 @@ type Gamer struct {
 	ImageUrl    string             `json:"image_url"`
 	IsAlive     bool               `json:"is_alive"`
 	Actions     map[string]*Action `json:"actions"omitempty` // map of string (stepId) and Action
-	Abilities   []Ability          `json:"abilities"`
+	Abilities   []*Ability         `json:"abilities"`
 }
 
 type Action struct {
