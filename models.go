@@ -68,7 +68,6 @@ type Step struct {
 	StartTime    string  `json:"start_time"`
 	EndTime      string  `json:"end_time"`
 	Result       *Result `json:"result"`
-	Action       string  `json:"action"`
 }
 
 type Result struct {
