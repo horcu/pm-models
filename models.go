@@ -60,6 +60,7 @@ type Step struct {
 	Duration     string   `json:"duration"`
 	Command      string   `json:"command"`
 	NcCommand    string   `json:"nc_command"`
+	ShowTimer    bool     `json:"show_timer"`
 	CharPhotoUrl string   `json:"char_photo_url"`
 	Text         string   `json:"text"`
 	NcText       string   `json:"nc_text"`
