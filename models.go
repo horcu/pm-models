@@ -53,29 +53,29 @@ type Game struct {
 }
 
 type Step struct {
-	Bin          string  `json:"bin"`
-	NextStep     string  `json:"next_step"`
-	Type         string  `json:"type"`
-	StepType     string  `json:"step_type"`
-	Duration     string  `json:"duration"`
-	Command      string  `json:"command"`
-	NcCommand    string  `json:"nc_command"`
-	CharPhotoUrl string  `json:"char_photo_url"`
-	Text         string  `json:"text"`
-	NcText       string  `json:"nc_text"`
-	Character    string  `json:"character"`
-	StepIndex    int     `json:"step_index"`
-	StartTime    string  `json:"start_time"`
-	EndTime      string  `json:"end_time"`
-	Result       *Result `json:"result"`
+	Bin          string   `json:"bin"`
+	NextStep     string   `json:"next_step"`
+	Type         string   `json:"type"`
+	StepType     string   `json:"step_type"`
+	Duration     string   `json:"duration"`
+	Command      string   `json:"command"`
+	NcCommand    string   `json:"nc_command"`
+	CharPhotoUrl string   `json:"char_photo_url"`
+	Text         string   `json:"text"`
+	NcText       string   `json:"nc_text"`
+	Character    string   `json:"character"`
+	StepIndex    int      `json:"step_index"`
+	StartTime    string   `json:"start_time"`
+	EndTime      string   `json:"end_time"`
+	Result       *Result  `json:"result"`
+	Allowed      []string `json:"allowed"`
 }
 
 type Result struct {
-	Bin     string `json:"bin"`
-	Index   int    `json:"index"`    // order
-	EndTime string `json:"end_time"` // milliseconds
-	// poisoned: [player1, player2] // healed : [player1]
-	ResultMap map[string]*Gamer `json:"players_affected"omitempty`
+	Bin       string            `json:"bin"`
+	Index     int               `json:"index"`                     // order
+	EndTime   string            `json:"end_time"`                  // milliseconds
+	ResultMap map[string]*Gamer `json:"players_affected"omitempty` // poisoned: [player1, player2] // healed : [player1]
 	TimeStamp string            `json:"timestamp"`
 }
 
