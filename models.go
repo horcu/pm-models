@@ -1,5 +1,9 @@
 package v1
 
+import (
+	"fmt"
+)
+
 type Invitation struct {
 	Bin        string `json:"bin"`
 	GameGroup  string `json:"game_group"`
@@ -35,7 +39,6 @@ type Group struct {
 
 type Game struct {
 	Bin               string                `json:"bin"`
-	Steps             map[string]*Step      `json:"steps"omitempty`
 	IsDaytime         bool                  `json:"is_daytime", omitempty`
 	ExplanationSeen   bool                  `json:"explanation_seen", omitempty`
 	FirstDayCompleted bool                  `json:"first_day_completed", omitempty`
@@ -48,7 +51,9 @@ type Game struct {
 	StartTime         string                `json:"start_time", omitempty`
 	EndTime           string                `json:"end_time", omitempty`
 	Creator           *Player               `json:"creator",  omitempty`
+	Cycles            int                   `json:"cycles", omitempty`
 	Invited           []string              `json:"invited", omitempty`
+	Steps             map[string]*Step      `json:"steps"omitempty`
 	Gamers            map[string]*Gamer     `json:"gamers", omitempty`
 	Characters        map[string]*Character `json:"characters" omitempty`
 }
@@ -141,4 +146,77 @@ type Ability struct {
 	Name      string `json:"name"`
 	Character string `json:"character"`
 	Frequency string `json:"frequency"`
+	TimesUsed int    `json:"times_used"omitempty"`
 }
+
+// RULES ENGINE
+type RulesEngine struct {
+	game *Game
+}
+
+// NewRulesEngine creates a new RulesEngine instance.
+func NewRulesEngine(game *Game) (*RulesEngine, error) {
+	return &RulesEngine{game: game}, nil
+}
+
+// GetAllowedAbilities determines the allowed abilities for a player in the current step.
+func (re *RulesEngine) GetAllowedAbilities(playerBin string, currentStep Step) ([]*Ability, error) {
+	// 1. Find the current step
+
+	for _, s := range re.game.Steps {
+		if s.Bin == currentStep.Bin {
+			currentStep = *s
+			break
+		}
+	}
+	if currentStep.Bin == "" {
+		return nil, fmt.Errorf("invalid step: %s", currentStep.Bin)
+	}
+
+	// 2. Find the player's abilities
+	var gamer *Gamer
+	for _, c := range re.game.Gamers {
+		if c.Bin == playerBin {
+			gamer = c
+			break
+		}
+	}
+	if gamer == nil {
+		return nil, fmt.Errorf("invalid player: %s", playerBin)
+	}
+
+	// 3. Determine allowed abilities
+	var allowedAbilities []*Ability
+	for _, ability := range gamer.Abilities {
+		// Check if the ability is allowed in the current step
+		isAllowedInStep := false
+		for _, allowed := range currentStep.Allowed {
+			if allowed == ability.Name {
+				isAllowedInStep = true
+				break
+			}
+		}
+
+		if isAllowedInStep {
+			// Check ability frequency
+			switch ability.Frequency {
+			case "every":
+				allowedAbilities = append(allowedAbilities, ability)
+			case "once":
+				if ability.TimesUsed == 0 {
+					allowedAbilities = append(allowedAbilities, ability)
+				}
+			case "every_other":
+				if re.game.Cycles%2 == 0 {
+					allowedAbilities = append(allowedAbilities, ability)
+				}
+			default:
+				return nil, fmt.Errorf("invalid ability frequency: %s", ability.Frequency)
+			}
+		}
+	}
+
+	return allowedAbilities, nil
+}
+
+//END RULES ENGINE
