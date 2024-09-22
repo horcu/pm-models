@@ -142,11 +142,12 @@ type Character struct {
 }
 
 type Ability struct {
-	Bin       string `json:"bin"`
-	Name      string `json:"name"`
-	Character string `json:"character"`
-	Frequency string `json:"frequency"`
-	TimesUsed int    `json:"times_used"omitempty"`
+	Bin          string `json:"bin"`
+	Name         string `json:"name"`
+	Character    string `json:"character"`
+	Frequency    string `json:"frequency"`
+	TimesUsed    int    `json:"times_used"omitempty"`
+	Instructions string `json:"instructions"omitempty`
 }
 
 // RULES ENGINE
