@@ -79,8 +79,8 @@ type Step struct {
 }
 
 type StepSequence struct {
-	sDuration string `json:"s_duration"`
-	cStep     string `json:"c_step"`
+	SDuration string `json:"s_duration"`
+	CStep     string `json:"c_step"`
 }
 
 type Result struct {
