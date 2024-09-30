@@ -78,6 +78,11 @@ type Step struct {
 	Allowed      []string `json:"allowed"`
 }
 
+type StepSequence struct {
+	sDuration string `json:"s_duration"`
+	cStep     string `json:"c_step"`
+}
+
 type Result struct {
 	Bin       string             `json:"bin"`
 	Index     int                `json:"index"`
