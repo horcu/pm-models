@@ -114,10 +114,15 @@ type Action struct {
 }
 
 type Vote struct {
-	Bin       string `json:"bin"`
-	Target    string `json:"target"`
-	TimeStamp string `json:"time_stamp"`
-	Decision  string `json:"decision"`
+	Bin       string   `json:"bin"`
+	Target    string   `json:"target"`
+	TimeStamp string   `json:"time_stamp"`
+	Decision  Decision `json:"decision"`
+}
+
+type Decision struct {
+	Bin     string `json:"bin"`
+	Ability string `json:"ability"`
 }
 
 type Message struct {
