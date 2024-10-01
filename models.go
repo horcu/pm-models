@@ -53,6 +53,7 @@ type Game struct {
 	Creator           *Player               `json:"creator",  omitempty`
 	Cycles            int                   `json:"cycles", omitempty`
 	Invited           []string              `json:"invited", omitempty`
+	AllVotesSubmitted bool                  `json:"all_votes_submitted", omitempty`
 	Steps             map[string]*Step      `json:"steps"omitempty`
 	Gamers            map[string]*Gamer     `json:"gamers", omitempty`
 	Characters        map[string]*Character `json:"characters" omitempty`
@@ -73,6 +74,7 @@ type Step struct {
 	Character    string   `json:"character"`
 	StepIndex    int      `json:"step_index"`
 	StartTime    string   `json:"start_time"`
+	RequiresVote bool     `json:"requires_vote"`
 	EndTime      string   `json:"end_time"`
 	Result       *Result  `json:"result"`
 	Allowed      []string `json:"allowed"`
