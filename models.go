@@ -78,6 +78,7 @@ type Step struct {
 	EndTime      string   `json:"end_time"`
 	Result       *Result  `json:"result"`
 	Allowed      []string `json:"allowed"`
+	SubSteps     []string `json:"sub_steps"`
 }
 
 type StepSequence struct {
