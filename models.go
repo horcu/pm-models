@@ -78,7 +78,7 @@ type Step struct {
 	EndTime      string          `json:"end_time"`
 	Result       *Result         `json:"result"`
 	Allowed      []string        `json:"allowed"`
-	SubSteps     map[string]Step `json:"sub_steps"`
+	SubSteps     map[string]Step `json:"sub_steps" omitempty`
 }
 
 type StepSequence struct {
