@@ -106,6 +106,7 @@ type Action struct {
 	Bin      string              `json:"bin"`
 	StepId   string              `json:"step_id"`
 	Vote     Vote                `json:"vote"omitempty`
+	PlayerId string              `json:"player_id"`
 	Messages map[string]*Message `json:"messages"omitempty` // map of string (timestamp millis) and message
 }
 
@@ -123,8 +124,6 @@ type Decision struct {
 
 type Message struct {
 	Bin       string `json:"bin"`
-	StepId    string `json:"step_id"`
-	PlayerId  string `json:"player_id"`
 	Text      string `json:"text"`
 	Icon      string `json:"icon"`
 	HasImage  bool   `json:"has_image"`
