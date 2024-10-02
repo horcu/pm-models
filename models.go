@@ -62,16 +62,12 @@ type Game struct {
 type Step struct {
 	Bin          string          `json:"bin"`
 	NextStep     string          `json:"next_step"`
-	Type         string          `json:"type"`
 	StepType     string          `json:"step_type"`
 	Duration     string          `json:"duration"`
 	Command      string          `json:"command"`
-	NcCommand    string          `json:"nc_command"`
 	ShowTimer    bool            `json:"show_timer"`
 	CharPhotoUrl string          `json:"char_photo_url"`
-	Text         string          `json:"text"`
-	NcText       string          `json:"nc_text"`
-	Character    string          `json:"character"`
+	Character    Character       `json:"character"`
 	StepIndex    int             `json:"step_index"`
 	StartTime    string          `json:"start_time"`
 	RequiresVote bool            `json:"requires_vote"`
