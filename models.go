@@ -71,6 +71,7 @@ type Step struct {
 	StepIndex         int                   `json:"step_index"`
 	StartTime         string                `json:"start_time"`
 	RequiresVote      bool                  `json:"requires_vote"`
+	VoteType          string                `json:"vote_type"`
 	VillainVoteCount  int                   `json:"villain_vote_count"`
 	InnocentVoteCount int                   `json:"innocent_vote_count"`
 	EndTime           string                `json:"end_time"`
