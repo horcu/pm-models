@@ -93,18 +93,6 @@ type Result struct {
 	TimeStamp string             `json:"timestamp"`
 }
 
-type Gamer struct {
-	Bin         string             `json:"bin"`
-	GameId      string             `json:"game_id"`
-	CharacterId string             `json:"character_id"`
-	Name        string             `json:"name"`
-	ImageUrl    string             `json:"image_url"`
-	IsAlive     bool               `json:"is_alive"`
-	SeenSteps   []Step             `json:"seen_steps"`
-	Actions     map[string]*Action `json:"actions"omitempty` // map of stepId and Action
-	Abilities   []*Ability         `json:"abilities"`
-}
-
 type Action struct {
 	Bin      string              `json:"bin"`
 	StepId   string              `json:"step_id"`
