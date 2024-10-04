@@ -94,16 +94,16 @@ type Result struct {
 }
 
 type Gamer struct {
-	Bin         string             `json:"bin"`
-	GameId      string             `json:"game_id"`
-	CharacterId string             `json:"character_id"`
-	Name        string             `json:"name"`
-	ImageUrl    string             `json:"image_url"`
-	IsAlive     bool               `json:"is_alive"`
-	SeenSteps   []*string          `json:"seen_steps"`
-	VotedSteps  []*string          `json:"voted_steps"`
-	Actions     map[string]*Action `json:"actions"omitempty` // map of stepId and Action
-	Abilities   []*Ability         `json:"abilities"`
+	Bin         string               `json:"bin"`
+	GameId      string               `json:"game_id"`
+	CharacterId string               `json:"character_id"`
+	Name        string               `json:"name"`
+	ImageUrl    string               `json:"image_url"`
+	IsAlive     bool                 `json:"is_alive"`
+	SeenSteps   []*string            `json:"seen_steps"`
+	VotedSteps  []*string            `json:"voted_steps"`
+	Actions     map[string][]*Action `json:"actions"omitempty` // map of stepId and list of Action (multiple cycles)
+	Abilities   []*Ability           `json:"abilities"`
 }
 
 type Action struct {
