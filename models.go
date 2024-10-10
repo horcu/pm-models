@@ -110,6 +110,7 @@ type Action struct {
 	Bin      string              `json:"bin"`
 	StepId   string              `json:"step_id"`
 	Vote     Vote                `json:"vote"omitempty`
+	GameId   string              `json:"game_id"`
 	PlayerId string              `json:"player_id"`
 	Messages map[string]*Message `json:"messages"omitempty` // map of string (timestamp millis) and message
 }
