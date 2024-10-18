@@ -18,14 +18,15 @@ type Invitation struct {
 }
 
 type Player struct {
-	UserName    string                 `json:"user_name"`
-	Bin         string                 `json:"bin"`
-	Photo       string                 `json:"photo"`
-	Status      string                 `json:"status"` //inAGame, afk, available
-	Privacy     string                 `json:"privacy"`
-	Invitations map[string]*Invitation `json:"invitations",omitempty`
-	GroupIds    []string               `json:"group_ids",omitempty`
-	GameIds     []string               `json:"game_ids",omitempty`
+	UserName     string                 `json:"user_name"`
+	Bin          string                 `json:"bin"`
+	Photo        string                 `json:"photo"`
+	Status       string                 `json:"status"` //inAGame, afk, available
+	Privacy      string                 `json:"privacy"`
+	Invitations  map[string]*Invitation `json:"invitations",omitempty`
+	GroupIds     []string               `json:"group_ids",omitempty`
+	GameIds      []string               `json:"game_ids",omitempty`
+	Achievements *Achievements          `json:"achievements",omitempty`
 }
 
 type Group struct {
@@ -42,6 +43,7 @@ type Game struct {
 	IsDaytime         bool                  `json:"is_daytime", omitempty`
 	ExplanationSeen   bool                  `json:"explanation_seen", omitempty`
 	FirstDayCompleted bool                  `json:"first_day_completed", omitempty`
+	Level             string                `json:"level"`
 	CurrentStep       string                `json:"current_step"`
 	GroupId           string                `json:"group_id"`
 	Status            string                `json:"status"`
@@ -104,6 +106,25 @@ type Gamer struct {
 	VotedSteps  []*string            `json:"voted_steps"`
 	Actions     map[string][]*Action `json:"actions"omitempty` // map of stepId and list of Action (multiple cycles)
 	Abilities   []*Ability           `json:"abilities"`
+}
+
+type Achievements struct {
+	Levels     []*Level     `json:"levels"`
+	Characters []*Character `json:"characters"`
+}
+
+type Leaderboard struct {
+	Players      []*Player          `json:"players"`
+	BestVillain  map[string]*Player `json:"best_villain"`
+	BestInnocent map[string]*Player `json:"best_innocent"`
+	MostWins     *Player            `json:"most_wins"`
+}
+
+type Level struct {
+	Bin           string `json:"bin`
+	Value         string `json:"value"`
+	AwardedPoints int    `json:"awarded_points"`
+	Timestamp     string `json:"timestamp"`
 }
 
 type Action struct {
