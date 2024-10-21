@@ -1,9 +1,5 @@
 package v1
 
-import (
-	"fmt"
-)
-
 type Invitation struct {
 	Bin        string `json:"bin"`
 	GameGroup  string `json:"game_group"`
@@ -88,29 +84,58 @@ type StepSequence struct {
 }
 
 type Result struct {
-	Bin       string             `json:"bin"`
-	Index     int                `json:"index"`
-	EndTime   string             `json:"end_time"`
-	Decisions map[string]*Action `json:"decisions"omitempty` //map of playerId and the action they took
-	TimeStamp string             `json:"timestamp"`
+	Bin       string                    `json:"bin"`
+	Index     int                       `json:"index"`
+	EndTime   string                    `json:"end_time"`
+	Decisions map[string]*[]StepHistory `json:"decisions"omitempty` //map of playerId and their stepHistory
+	TimeStamp string                    `json:"timestamp"`
 }
 
 type Gamer struct {
-	Bin         string               `json:"bin"`
-	GameId      string               `json:"game_id"`
-	CharacterId string               `json:"character_id"`
-	Name        string               `json:"name"`
-	ImageUrl    string               `json:"image_url"`
-	IsAlive     bool                 `json:"is_alive"`
-	SeenSteps   []*string            `json:"seen_steps"`
-	VotedSteps  []*string            `json:"voted_steps"`
-	Actions     map[string][]*Action `json:"actions"omitempty` // map of stepId and list of Action (multiple cycles)
-	Abilities   []*Ability           `json:"abilities"`
+	Bin         string                  `json:"bin"`
+	GameId      string                  `json:"game_id"`
+	CharacterId string                  `json:"character_id"`
+	Name        string                  `json:"name"`
+	ImageUrl    string                  `json:"image_url"`
+	IsAlive     bool                    `json:"is_alive"`
+	StepHistory map[string]*StepHistory `json:"step_history"` // map of string (step bin) and step history
+	Abilities   []*Ability              `json:"abilities"`
+}
+
+type StepHistory struct {
+	Stamp          string      `json:"stamp` //millis timestamp same as key for step history entry
+	StepBin        string      `json:"step_bin"`
+	VotedAgainstBy []string    `json:"voted_against_by"`
+	VoteAction     *VoteAction `json:"actions"omitempty` // map of stepId and list of Action (multiple cycles)
+}
+
+type VoteAction struct {
+	Bin   string            `json:"bin"`
+	Vote  Vote              `json:"vote"omitempty`
+	Media map[string]*Media `json:"media"omitempty` // map of string (timestamp millis) and message
+}
+
+type Vote struct {
+	Bin       string `json:"bin"`
+	Target    string `json:"target"`
+	Source    string `json:"source"`
+	TimeStamp string `json:"time_stamp"`
+	VotedBy   string `json:"voted_by"`
+	Ability   string `json:"ability"` // what ability to use on the target
 }
 
 type Achievements struct {
 	Levels     []*Level     `json:"levels"`
 	Characters []*Character `json:"characters"`
+	Stats      []*GameStats `json:"stats"`
+}
+
+type GameStats struct {
+	GameIds    []string `json:"game_ids"`
+	Roles      []string `json:"roles"`
+	Wins       int      `json:"wins"`
+	Losses     int      `json:"losses"`
+	TotalGames int      `json:"total_games"`
 }
 
 type Leaderboard struct {
@@ -127,28 +152,7 @@ type Level struct {
 	Timestamp     string `json:"timestamp"`
 }
 
-type Action struct {
-	Bin      string              `json:"bin"`
-	StepId   string              `json:"step_id"`
-	Vote     Vote                `json:"vote"omitempty`
-	GameId   string              `json:"game_id"`
-	PlayerId string              `json:"player_id"`
-	Messages map[string]*Message `json:"messages"omitempty` // map of string (timestamp millis) and message
-}
-
-type Vote struct {
-	Bin       string   `json:"bin"`
-	Target    string   `json:"target"`
-	TimeStamp string   `json:"time_stamp"`
-	Decision  Decision `json:"decision"`
-}
-
-type Decision struct {
-	Bin     string `json:"bin"`
-	Ability string `json:"ability"`
-}
-
-type Message struct {
+type Media struct {
 	Bin       string `json:"bin"`
 	Text      string `json:"text"`
 	Icon      string `json:"icon"`
@@ -186,91 +190,3 @@ type Ability struct {
 	TimesUsed      int    `json:"times_used"omitempty"`
 	Instructions   string `json:"instructions"omitempty`
 }
-
-// RULES ENGINE
-type RulesEngine struct {
-	game *Game
-}
-
-// NewRulesEngine creates a new RulesEngine instance.
-func NewRulesEngine(game *Game) (*RulesEngine, error) {
-	return &RulesEngine{game: game}, nil
-}
-
-// GetAllowedAbilities determines the allowed abilities for a player in the current step.
-func (re *RulesEngine) GetAllowedAbilities(playerBin string, currentStep Step) ([]*Ability, error) {
-	// 1. Find the current step
-
-	for _, s := range re.game.Steps {
-		if s.Bin == currentStep.Bin {
-			currentStep = *s
-			break
-		}
-	}
-	if currentStep.Bin == "" {
-		return nil, fmt.Errorf("invalid step: %s", currentStep.Bin)
-	}
-
-	// 2. Find the player's abilities
-	var gamer *Gamer
-	for _, c := range re.game.Gamers {
-		if c.Bin == playerBin {
-			gamer = c
-			break
-		}
-	}
-	if gamer == nil {
-		return nil, fmt.Errorf("invalid player: %s", playerBin)
-	}
-
-	// 3. Determine allowed abilities
-	var allowedAbilities []*Ability
-	for _, ability := range gamer.Abilities {
-		// Check if the ability is allowed in the current step
-		isAllowedInStep := false
-		for _, allowed := range currentStep.Allowed {
-			if allowed == ability.Name {
-				isAllowedInStep = true
-				break
-			}
-		}
-
-		if isAllowedInStep {
-			// Check ability frequency
-			switch ability.Frequency {
-			case "every":
-				allowedAbilities = append(allowedAbilities, ability)
-			case "once":
-				if ability.TimesUsed > -1 && ability.TimesUsed < 1 {
-					allowedAbilities = append(allowedAbilities, ability)
-				}
-			case "twice":
-				if ability.TimesUsed > -1 && ability.TimesUsed < 2 {
-					allowedAbilities = append(allowedAbilities, ability)
-				}
-			case "every_other":
-				if ability.TimesUsed == 0 {
-					allowedAbilities = append(allowedAbilities, ability)
-					ability.TimesUsed++
-					ability.CycleUsedIndex = re.game.Cycles
-				} else {
-					if ability.CycleUsedIndex%2 == 0 {
-						if re.game.Cycles%2 == 0 {
-							allowedAbilities = append(allowedAbilities, ability)
-						}
-					} else {
-						if 1%re.game.Cycles == 0 {
-							allowedAbilities = append(allowedAbilities, ability)
-						}
-					}
-				}
-			default:
-				return nil, fmt.Errorf("invalid ability frequency: %s", ability.Frequency)
-			}
-		}
-	}
-
-	return allowedAbilities, nil
-}
-
-//END RULES ENGINE
