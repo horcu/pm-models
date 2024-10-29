@@ -167,7 +167,7 @@ type CharacterPack struct {
 	Name       string       `json:"name"`
 	OriginDate string       `json:"origin_date"`
 	Creator    string       `json:"creator"`
-	Characters []*Character `json:"characters"omitempty`
+	Characters []*Character `json:"characters, omitempty""`
 }
 
 type Character struct {
@@ -178,6 +178,22 @@ type Character struct {
 	Description string   `json:"description"`
 	Abilities   []string `json:"abilities"omitempty`
 	Role        string   `json:"role"`
+	Metrics     *Metrics `json:"metrics"`
+}
+
+type Metrics struct {
+	LastHealed        string   `json:"last_healed,omitempty"`
+	LastVoted         string   `json:"last_voted,omitempty"`
+	LastKilled        string   `json:"last_kill,omitempty"`
+	LastPoisoned      string   `json:"last_poisoned,omitempty"`
+	LastGuess         string   `json:"last_guess, omitempty"`
+	LastMimicked      string   `json:"last_mimicked, omitempty"`
+	CorrectGuesses    []string `json:"correct_guesses,omitempty"`
+	DirectedKills     []string `json:"directed_kills,omitempty"`
+	HitList           []string `json:"hit_list,omitempty"`
+	VotedAgainstBy    []string `json:"voted_against_by,omitempty"`
+	TimesVotedAgainst int      `json:"times_voted_against,omitempty"`
+	TimesSelfHealed   int      `json:"times_self_healed,omitempty"`
 }
 
 type Ability struct {
