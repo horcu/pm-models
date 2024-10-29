@@ -73,46 +73,41 @@ type Step struct {
 	VillainVoteCount  int                   `json:"villain_vote_count"`
 	InnocentVoteCount int                   `json:"innocent_vote_count"`
 	EndTime           string                `json:"end_time"`
-	Result            *Result               `json:"result"`
+	Result            map[int]*Result       `json:"result"` // map of game cycles and results
 	Allowed           []string              `json:"allowed"`
 	SubSteps          map[string]*Step      `json:"sub_steps" omitempty`
 }
 
-type StepSequence struct {
-	SDuration string `json:"s_duration"`
-	CStep     string `json:"c_step"`
-}
-
 type Result struct {
-	Bin       string                    `json:"bin"`
-	Index     int                       `json:"index"`
-	EndTime   string                    `json:"end_time"`
-	Decisions map[string]*[]StepHistory `json:"decisions"omitempty` //map of playerId and their stepHistory
-	TimeStamp string                    `json:"timestamp"`
+	Bin         string                  `json:"bin"`
+	Index       int                     `json:"index"`
+	EndTime     string                  `json:"end_time"`
+	StepHistory map[string]*StepHistory `json:"decisions"omitempty` //map of playerId and their stepHistory
+	TimeStamp   string                  `json:"timestamp"`
 }
 
 type Gamer struct {
-	Bin         string                  `json:"bin"`
-	GameId      string                  `json:"game_id"`
-	CharacterId string                  `json:"character_id"`
-	Name        string                  `json:"name"`
-	ImageUrl    string                  `json:"image_url"`
-	IsAlive     bool                    `json:"is_alive"`
-	StepHistory map[string]*StepHistory `json:"step_history"` // map of string (step bin) and step history
-	Abilities   []*Ability              `json:"abilities"`
+	Bin         string     `json:"bin"`
+	GameId      string     `json:"game_id"`
+	CharacterId string     `json:"character_id"`
+	Name        string     `json:"name"`
+	ImageUrl    string     `json:"image_url"`
+	IsAlive     bool       `json:"is_alive"`
+	Abilities   []*Ability `json:"abilities"`
 }
 
 type StepHistory struct {
-	Stamp          string      `json:"stamp` //millis timestamp same as key for step history entry
+	Bin            string      `json:"bin"`
+	Stamp          string      `json:"stamp"` //millis timestamp same as key for step history entry
 	StepBin        string      `json:"step_bin"`
 	VotedAgainstBy []string    `json:"voted_against_by"`
-	VoteAction     *VoteAction `json:"actions"omitempty` // map of stepId and list of Action (multiple cycles)
+	VoteAction     *VoteAction `json:"actions, omitempty"` // map of stepId and list of Action (multiple cycles)
 }
 
 type VoteAction struct {
 	Bin   string            `json:"bin"`
-	Vote  Vote              `json:"vote"omitempty`
-	Media map[string]*Media `json:"media"omitempty` // map of string (timestamp millis) and message
+	Vote  Vote              `json:"vote,omitempty""`
+	Media map[string]*Media `json:"media, omitempty"` // map of string (timestamp millis) and message
 }
 
 type Vote struct {
@@ -167,7 +162,7 @@ type CharacterPack struct {
 	Name       string       `json:"name"`
 	OriginDate string       `json:"origin_date"`
 	Creator    string       `json:"creator"`
-	Characters []*Character `json:"characters"omitempty`
+	Characters []*Character `json:"characters, omitempty""`
 }
 
 type Character struct {
@@ -178,6 +173,22 @@ type Character struct {
 	Description string   `json:"description"`
 	Abilities   []string `json:"abilities"omitempty`
 	Role        string   `json:"role"`
+	Metrics     *Metrics `json:"metrics"`
+}
+
+type Metrics struct {
+	LastHealed        string   `json:"last_healed,omitempty"`
+	LastVoted         string   `json:"last_voted,omitempty"`
+	LastKilled        string   `json:"last_kill,omitempty"`
+	LastPoisoned      string   `json:"last_poisoned,omitempty"`
+	LastGuess         string   `json:"last_guess, omitempty"`
+	LastMimicked      string   `json:"last_mimicked, omitempty"`
+	CorrectGuesses    []string `json:"correct_guesses,omitempty"`
+	DirectedKills     []string `json:"directed_kills,omitempty"`
+	HitList           []string `json:"hit_list,omitempty"`
+	VotedAgainstBy    []string `json:"voted_against_by,omitempty"`
+	TimesVotedAgainst int      `json:"times_voted_against,omitempty"`
+	TimesSelfHealed   int      `json:"times_self_healed,omitempty"`
 }
 
 type Ability struct {
@@ -189,4 +200,9 @@ type Ability struct {
 	Frequency      string `json:"frequency"`
 	TimesUsed      int    `json:"times_used"omitempty"`
 	Instructions   string `json:"instructions"omitempty`
+}
+
+type StepSequence struct {
+	SDuration string `json:"s_duration"`
+	CStep     string `json:"c_step"`
 }
