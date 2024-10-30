@@ -100,18 +100,22 @@ type StepHistory struct {
 	Bin            string      `json:"bin"`
 	Stamp          string      `json:"stamp"` //millis timestamp same as key for step history entry
 	StepBin        string      `json:"step_bin"`
+	GameBin        string      `json:"game_bin"`
 	VotedAgainstBy []string    `json:"voted_against_by"`
-	VoteAction     *VoteAction `json:"actions, omitempty"` // map of stepId and list of Action (multiple cycles)
+	VoteAction     *VoteAction `json:"actions, omitempty"`
 }
 
 type VoteAction struct {
-	Bin   string            `json:"bin"`
-	Vote  Vote              `json:"vote,omitempty""`
-	Media map[string]*Media `json:"media, omitempty"` // map of string (timestamp millis) and message
+	Bin     string            `json:"bin"`
+	StepBin string            `json:"step_bin"`
+	GameBin string            `json:"game_bin"`
+	Vote    Vote              `json:"vote,omitempty""`
+	Media   map[string]*Media `json:"media, omitempty"` // map of string (timestamp millis) and message
 }
 
 type Vote struct {
 	Bin       string `json:"bin"`
+	StepBin   string `json:"step_bin"`
 	Target    string `json:"target"`
 	Source    string `json:"source"`
 	TimeStamp string `json:"time_stamp"`
