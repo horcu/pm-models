@@ -19,16 +19,16 @@ type Player struct {
 	Photo        string                 `json:"photo"`
 	Status       string                 `json:"status"` //inAGame, afk, available
 	Privacy      string                 `json:"privacy"`
-	Invitations  map[string]*Invitation `json:"invitations",omitempty`
-	GroupIds     []string               `json:"group_ids",omitempty`
-	GameIds      []string               `json:"game_ids",omitempty`
-	Achievements *Achievements          `json:"achievements",omitempty`
+	Invitations  map[string]*Invitation `json:"invitations,omitempty"`
+	GroupIds     []string               `json:"group_ids,omitempty"`
+	GameIds      []string               `json:"game_ids,omitempty"`
+	Achievements *Achievements          `json:"achievements,omitempt"`
 }
 
 type Group struct {
 	Bin       string    `json:"bin"`
 	Creator   *Player   `json:"creator"`
-	Members   []*Player `json:"members", omitempty`
+	Members   []*Player `json:"members,omitempty"`
 	GroupName string    `json:"group_name"`
 	Capacity  int       `json:"capacity"`
 	Status    string    `json:"status"`
@@ -36,25 +36,25 @@ type Group struct {
 
 type Game struct {
 	Bin               string                `json:"bin"`
-	IsDaytime         bool                  `json:"is_daytime", omitempty`
-	ExplanationSeen   bool                  `json:"explanation_seen", omitempty`
-	FirstDayCompleted bool                  `json:"first_day_completed", omitempty`
+	IsDaytime         bool                  `json:"is_daytime,omitempty"`
+	ExplanationSeen   bool                  `json:"explanation_seen,omitempty"`
+	FirstDayCompleted bool                  `json:"first_day_completed,omitempty"`
 	Level             string                `json:"level"`
 	CurrentStep       string                `json:"current_step"`
 	GroupId           string                `json:"group_id"`
 	Status            string                `json:"status"`
-	ServerName        string                `json:"server_name", omitempty`
-	ServerAddress     string                `json:"server_ip", omitempty`
-	ServerPort        int                   `json:"server_port", omitempty`
-	StartTime         string                `json:"start_time", omitempty`
-	EndTime           string                `json:"end_time", omitempty`
-	Creator           *Player               `json:"creator",  omitempty`
-	Cycles            int                   `json:"cycles", omitempty`
-	Invited           []string              `json:"invited", omitempty`
-	AllVotesSubmitted bool                  `json:"all_votes_submitted", omitempty`
-	Steps             map[string]*Step      `json:"steps"omitempty`
-	Gamers            map[string]*Gamer     `json:"gamers", omitempty`
-	Characters        map[string]*Character `json:"characters" omitempty`
+	ServerName        string                `json:"server_name,omitempty"`
+	ServerAddress     string                `json:"server_ip,omitempty"`
+	ServerPort        int                   `json:"server_port,omitempty"`
+	StartTime         string                `json:"start_time,omitempty"`
+	EndTime           string                `json:"end_time,omitempty"`
+	Creator           *Player               `json:"creator,omitempty"`
+	Cycles            int                   `json:"cycles,omitempty"`
+	Invited           []string              `json:"invited,omitempty"`
+	AllVotesSubmitted bool                  `json:"all_votes_submitted,omitempty"`
+	Steps             map[string]*Step      `json:"steps,omitempty"`
+	Gamers            map[string]*Gamer     `json:"gamers,omitempty"`
+	Characters        map[string]*Character `json:"characters,omitempty"`
 }
 
 type Step struct {
@@ -75,14 +75,14 @@ type Step struct {
 	EndTime           string                `json:"end_time"`
 	Result            map[int]*Result       `json:"result"` // map of game cycles and results
 	Allowed           []string              `json:"allowed"`
-	SubSteps          map[string]*Step      `json:"sub_steps" omitempty`
+	SubSteps          map[string]*Step      `json:"sub_steps,omitempty"`
 }
 
 type Result struct {
 	Bin         string                  `json:"bin"`
 	Index       int                     `json:"index"`
 	EndTime     string                  `json:"end_time"`
-	StepHistory map[string]*StepHistory `json:"decisions"omitempty` //map of playerId and their stepHistory
+	StepHistory map[string]*StepHistory `json:"decisions,omitempty"` //map of playerId and their stepHistory
 	TimeStamp   string                  `json:"timestamp"`
 }
 
@@ -103,15 +103,15 @@ type StepHistory struct {
 	StepBin        string      `json:"step_bin"`
 	GameBin        string      `json:"game_bin"`
 	VotedAgainstBy []string    `json:"voted_against_by"`
-	VoteAction     *VoteAction `json:"actions, omitempty"`
+	VoteAction     *VoteAction `json:"actions,omitempty"`
 }
 
 type VoteAction struct {
 	Bin     string            `json:"bin"`
 	StepBin string            `json:"step_bin"`
 	GameBin string            `json:"game_bin"`
-	Vote    Vote              `json:"vote,omitempty""`
-	Media   map[string]*Media `json:"media, omitempty"` // map of string (timestamp millis) and message
+	Vote    Vote              `json:"vote,omitempty"`
+	Media   map[string]*Media `json:"media,omitempty"` // map of string (timestamp millis) and message
 }
 
 type Vote struct {
@@ -146,7 +146,7 @@ type Leaderboard struct {
 }
 
 type Level struct {
-	Bin           string `json:"bin`
+	Bin           string `json:"bin"`
 	Value         string `json:"value"`
 	AwardedPoints int    `json:"awarded_points"`
 	Timestamp     string `json:"timestamp"`
@@ -157,17 +157,17 @@ type Media struct {
 	Text      string `json:"text"`
 	Icon      string `json:"icon"`
 	HasImage  bool   `json:"has_image"`
-	ImagePath string `json:"image_path"omitempty`
-	AudioPath string `json:"audio_path"omitempty`
-	VideoPath string `json:"video_path"omitempty`
-	TimeStamp string `json:"time_stamp"omitempty`
+	ImagePath string `json:"image_path,omitempty"`
+	AudioPath string `json:"audio_path,omitempty"`
+	VideoPath string `json:"video_path,omitempty"`
+	TimeStamp string `json:"time_stamp,omitempty"`
 }
 
 type CharacterPack struct {
 	Name       string       `json:"name"`
 	OriginDate string       `json:"origin_date"`
 	Creator    string       `json:"creator"`
-	Characters []*Character `json:"characters, omitempty""`
+	Characters []*Character `json:"characters,omitempty"`
 }
 
 type Character struct {
@@ -176,23 +176,30 @@ type Character struct {
 	Name        string   `json:"name"`
 	ImageUrl    string   `json:"image_url"`
 	Description string   `json:"description"`
-	Abilities   []string `json:"abilities"omitempty`
+	Abilities   []string `json:"abilities,omitempty"`
 	Role        string   `json:"role"`
 }
 
 type Metrics struct {
-	LastHealed        string   `json:"last_healed,omitempty"`
-	LastVoted         string   `json:"last_voted,omitempty"`
-	LastKilled        string   `json:"last_kill,omitempty"`
-	LastPoisoned      string   `json:"last_poisoned,omitempty"`
-	LastGuess         string   `json:"last_guess, omitempty"`
-	LastMimicked      string   `json:"last_mimicked, omitempty"`
-	CorrectGuesses    []string `json:"correct_guesses,omitempty"`
-	DirectedKills     []string `json:"directed_kills,omitempty"`
-	HitList           []string `json:"hit_list,omitempty"`
-	VotedAgainstBy    []string `json:"voted_against_by,omitempty"`
-	TimesVotedAgainst int      `json:"times_voted_against,omitempty"`
-	TimesSelfHealed   int      `json:"times_self_healed,omitempty"`
+	LastHeal           string   `json:"last_heal,omitempty"`
+	LastVote           string   `json:"last_vote,omitempty"`
+	LastKill           string   `json:"last_kill,omitempty"`
+	LastPoisoning      string   `json:"last_poisoning,omitempty"`
+	LastMimic          string   `json:"last_mimic,omitempty"`
+	LastTrick          string   `json:"last_trick,omitempty"`
+	Heals              []string `json:"heals,omitempty"`
+	TimesHealed        int      `json:"times_healed,omitempty"`
+	Kills              []string `json:"kills,omitempty"`
+	Votes              []string `json:"votes,omitempty"`
+	Mimics             []string `json:"mimics,omitempty"`
+	TimesMimicked      int      `json:"times_mimicked,omitempty"`
+	Tricks             []string `json:"tricks,omitempty"`
+	TimesTricked       int      `json:"times_tricked,omitempty"`
+	Poisonings         []string `json:"poisonings,omitempty"`
+	TimesPoisoned      int      `json:"times_poisoned,omitempty"`
+	VotedAgainstBy     []string `json:"voted_against_by,omitempty"`
+	VotedAgainstMostBy string   `json:"voted_against_most_by,omitempty"`
+	VoteSuccessRate    float64  `json:"vote_success_rate,omitempty"`
 }
 
 type Ability struct {
@@ -202,8 +209,8 @@ type Ability struct {
 	Description    string `json:"description"`
 	CycleUsedIndex int    `json:"cycle_used_index"`
 	Frequency      string `json:"frequency"`
-	TimesUsed      int    `json:"times_used"omitempty"`
-	Instructions   string `json:"instructions"omitempty`
+	TimesUsed      int    `json:"times_used,omitempty"`
+	Instructions   string `json:"instructions,omitempty"`
 }
 
 type StepSequence struct {
