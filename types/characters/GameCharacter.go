@@ -1,4 +1,4 @@
-package characters
+package types
 
 type GameCharacter struct {
 	Bin         string         `json:"bin"`

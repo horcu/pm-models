@@ -1,4 +1,4 @@
-package characters
+package types
 
 type TrickyCharacter struct {
 	VillainCharacter

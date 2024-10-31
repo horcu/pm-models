@@ -1,4 +1,4 @@
-package characters
+package types
 
 type PoisonousCharacter struct {
 	VillainCharacter

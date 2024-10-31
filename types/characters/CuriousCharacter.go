@@ -1,4 +1,4 @@
-package characters
+package types
 
 type CuriousCharacter struct {
 	InnocentCharacter

@@ -1,4 +1,4 @@
-package characters
+package types
 
 type MimicCharacter struct {
 	InnocentCharacter
