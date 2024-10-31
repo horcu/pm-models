@@ -13,6 +13,12 @@ type Metrics struct {
 	Kills                    []string `json:"kills,omitempty"`
 	Votes                    []string `json:"votes,omitempty"`
 	Mimics                   []string `json:"mimics,omitempty"`
+	HealedBy                 []string `json:"healed_by,omitempty"`
+	KilledBy                 []string `json:"killed_by,omitempty"`
+	MimickedBy               []string `json:"mimicked_by,omitempty"`
+	TrickedBy                []string `json:"tricked_by,omitempty"`
+	PoisonedBy               []string `json:"poisoned_by,omitempty"`
+	InvestigatedBy           []string `json:"investigated_by,omitempty"`
 	Investigations           []string `json:"investigations,omitempty"`
 	TimesMimicked            int      `json:"times_mimicked,omitempty"`
 	Tricks                   []string `json:"tricks,omitempty"`
