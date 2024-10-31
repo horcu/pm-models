@@ -4,6 +4,6 @@ type CuriousCharacter struct {
 	InnocentCharacter
 }
 
-func (c *CuriousCharacter) LastGuess() string {
+func (c *CuriousCharacter) LastInvestigated() string {
 	return ""
 }

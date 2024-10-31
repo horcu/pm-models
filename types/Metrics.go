@@ -7,11 +7,13 @@ type Metrics struct {
 	LastPoisoning            string   `json:"last_poisoning,omitempty"`
 	LastMimic                string   `json:"last_mimic,omitempty"`
 	LastTrick                string   `json:"last_trick,omitempty"`
+	LastInvestigated         string   `json:"last_investigated,omitempty"`
 	Heals                    []string `json:"heals,omitempty"`
 	TimesHealed              int      `json:"times_healed,omitempty"`
 	Kills                    []string `json:"kills,omitempty"`
 	Votes                    []string `json:"votes,omitempty"`
 	Mimics                   []string `json:"mimics,omitempty"`
+	Investigations           []string `json:"investigations,omitempty"`
 	TimesMimicked            int      `json:"times_mimicked,omitempty"`
 	Tricks                   []string `json:"tricks,omitempty"`
 	TimesTricked             int      `json:"times_tricked,omitempty"`
@@ -21,6 +23,6 @@ type Metrics struct {
 	VotedAgainstMostBy       string   `json:"voted_against_most_by,omitempty"`
 	VoteSuccessRate          float64  `json:"vote_success_rate,omitempty"`
 	NightsSurvived           int      `json:"nights_survived,omitempty"`
-	SuccessfulInvestigations int      `json:"successful_investigations,omitempty"`
+	SuccessfulInvestigations []string `json:"successful_investigations,omitempty"`
 	TimesInvestigated        int      `json:"times_investigated,omitempty"`
 }

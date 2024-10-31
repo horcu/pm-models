@@ -17,3 +17,11 @@ func (result *Result) IsGamer(gamerId string) bool {
 		return false
 	}
 }
+
+func (result *Result) IsTarget(gamerId string) bool {
+	if result.Vote.Target == gamerId {
+		return true
+	} else {
+		return false
+	}
+}
