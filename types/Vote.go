@@ -3,6 +3,7 @@ package types
 type Vote struct {
 	Bin       string `json:"bin"`
 	StepBin   string `json:"step_bin"`
+	GameBin   string `json:"game_bin"`
 	Target    string `json:"target"`
 	Source    string `json:"source"`
 	TimeStamp string `json:"time_stamp"`
