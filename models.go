@@ -94,6 +94,7 @@ type Gamer struct {
 	ImageUrl    string     `json:"image_url"`
 	IsAlive     bool       `json:"is_alive"`
 	Abilities   []*Ability `json:"abilities"`
+	Metrics     *Metrics   `json:"metrics"`
 }
 
 type StepHistory struct {
@@ -177,7 +178,6 @@ type Character struct {
 	Description string   `json:"description"`
 	Abilities   []string `json:"abilities"omitempty`
 	Role        string   `json:"role"`
-	Metrics     *Metrics `json:"metrics"`
 }
 
 type Metrics struct {
