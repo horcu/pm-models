@@ -15,10 +15,11 @@ type Game struct {
 	StartTime         string                `json:"start_time,omitempty"`
 	EndTime           string                `json:"end_time,omitempty"`
 	Creator           *Player               `json:"creator,omitempty"`
-	Cycles            int                   `json:"cycles,omitempty"`
+	NightCycles       int                   `json:"cycles,omitempty"`
 	Invited           []string              `json:"invited,omitempty"`
 	AllVotesSubmitted bool                  `json:"all_votes_submitted,omitempty"`
 	Steps             map[string]*Step      `json:"steps,omitempty"`
 	Gamers            map[string]*Gamer     `json:"gamers,omitempty"`
 	Characters        map[string]*Character `json:"characters,omitempty"`
+	StepResults       map[string][]*Result  `json:"step_results,omitempty"` // map of playerId and the list of results
 }
