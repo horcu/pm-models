@@ -1,5 +1,7 @@
 package v1
 
+import "github.com/horcu/mafia-models/types"
+
 type Invitation struct {
 	Bin        string `json:"bin"`
 	GameGroup  string `json:"game_group"`
@@ -35,26 +37,26 @@ type Group struct {
 }
 
 type Game struct {
-	Bin               string                `json:"bin"`
-	IsDaytime         bool                  `json:"is_daytime,omitempty"`
-	ExplanationSeen   bool                  `json:"explanation_seen,omitempty"`
-	FirstDayCompleted bool                  `json:"first_day_completed,omitempty"`
-	Level             string                `json:"level"`
-	CurrentStep       string                `json:"current_step"`
-	GroupId           string                `json:"group_id"`
-	Status            string                `json:"status"`
-	ServerName        string                `json:"server_name,omitempty"`
-	ServerAddress     string                `json:"server_ip,omitempty"`
-	ServerPort        int                   `json:"server_port,omitempty"`
-	StartTime         string                `json:"start_time,omitempty"`
-	EndTime           string                `json:"end_time,omitempty"`
-	Creator           *Player               `json:"creator,omitempty"`
-	Cycles            int                   `json:"cycles,omitempty"`
-	Invited           []string              `json:"invited,omitempty"`
-	AllVotesSubmitted bool                  `json:"all_votes_submitted,omitempty"`
-	Steps             map[string]*Step      `json:"steps,omitempty"`
-	Gamers            map[string]*Gamer     `json:"gamers,omitempty"`
-	Characters        map[string]*Character `json:"characters,omitempty"`
+	Bin               string                  `json:"bin"`
+	IsDaytime         bool                    `json:"is_daytime,omitempty"`
+	ExplanationSeen   bool                    `json:"explanation_seen,omitempty"`
+	FirstDayCompleted bool                    `json:"first_day_completed,omitempty"`
+	Level             string                  `json:"level"`
+	CurrentStep       string                  `json:"current_step"`
+	GroupId           string                  `json:"group_id"`
+	Status            string                  `json:"status"`
+	ServerName        string                  `json:"server_name,omitempty"`
+	ServerAddress     string                  `json:"server_ip,omitempty"`
+	ServerPort        int                     `json:"server_port,omitempty"`
+	StartTime         string                  `json:"start_time,omitempty"`
+	EndTime           string                  `json:"end_time,omitempty"`
+	Creator           *Player                 `json:"creator,omitempty"`
+	Cycles            int                     `json:"cycles,omitempty"`
+	Invited           []string                `json:"invited,omitempty"`
+	AllVotesSubmitted bool                    `json:"all_votes_submitted,omitempty"`
+	Steps             map[string]*Step        `json:"steps,omitempty"`
+	Gamers            map[string]*types.Gamer `json:"gamers,omitempty"`
+	Characters        map[string]*Character   `json:"characters,omitempty"`
 }
 
 type Step struct {
@@ -73,28 +75,9 @@ type Step struct {
 	VillainVoteCount  int                   `json:"villain_vote_count"`
 	InnocentVoteCount int                   `json:"innocent_vote_count"`
 	EndTime           string                `json:"end_time"`
-	Result            map[int]*Result       `json:"result"` // map of game cycles and results
+	Result            map[int]*types.Result `json:"result"` // map of game cycles and results
 	Allowed           []string              `json:"allowed"`
 	SubSteps          map[string]*Step      `json:"sub_steps,omitempty"`
-}
-
-type Result struct {
-	Bin         string                  `json:"bin"`
-	Index       int                     `json:"index"`
-	EndTime     string                  `json:"end_time"`
-	StepHistory map[string]*StepHistory `json:"decisions,omitempty"` //map of playerId and their stepHistory
-	TimeStamp   string                  `json:"timestamp"`
-}
-
-type Gamer struct {
-	Bin         string     `json:"bin"`
-	GameId      string     `json:"game_id"`
-	CharacterId string     `json:"character_id"`
-	Name        string     `json:"name"`
-	ImageUrl    string     `json:"image_url"`
-	IsAlive     bool       `json:"is_alive"`
-	Abilities   []*Ability `json:"abilities"`
-	Metrics     *Metrics   `json:"metrics"`
 }
 
 type StepHistory struct {
