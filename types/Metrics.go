@@ -21,6 +21,7 @@ type Metrics struct {
 	InvestigatedBy           []string `json:"investigated_by,omitempty"`
 	Investigations           []string `json:"investigations,omitempty"`
 	TimesMimicked            int      `json:"times_mimicked,omitempty"`
+	TimesVotedAgainst        int      `json:"times_voted_against,omitempty"`
 	Tricks                   []string `json:"tricks,omitempty"`
 	TimesTricked             int      `json:"times_tricked,omitempty"`
 	Poisonings               []string `json:"poisonings,omitempty"`
