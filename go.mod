@@ -1,3 +1,3 @@
-module github.com/horcu/mafia-models
+module github.com/horcu/pm-models
 
-go 1.22
+go 1.23
