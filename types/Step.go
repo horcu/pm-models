@@ -16,7 +16,7 @@ type Step struct {
 	VillainVoteCount  int                       `json:"villain_vote_count"`
 	InnocentVoteCount int                       `json:"innocent_vote_count"`
 	EndTime           string                    `json:"end_time"`
-	Result            map[int][]*Result         `json:"result"` // map of game cycles and list of results
+	Result            map[string][]*Result      `json:"result"` // map of player bin and list of results
 	Allowed           []string                  `json:"allowed"`
 	SubSteps          map[string]*Step          `json:"sub_steps,omitempty"`
 }
