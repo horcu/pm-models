@@ -9,4 +9,5 @@ type Ability struct {
 	Frequency      string `json:"frequency"`
 	TimesUsed      int    `json:"times_used,omitempty"`
 	Instructions   string `json:"instructions,omitempty"`
+	UIColor        string `json:"ui_color,omitempty"`
 }
