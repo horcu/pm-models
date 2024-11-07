@@ -14,6 +14,7 @@ type Game struct {
 	ServerPort        int                       `json:"server_port,omitempty"`
 	StartTime         string                    `json:"start_time,omitempty"`
 	EndTime           string                    `json:"end_time,omitempty"`
+	IsVoting          bool                      `json:"is_voting,omitempty"`
 	Creator           *Player                   `json:"creator,omitempty"`
 	NightCycles       int                       `json:"cycles,omitempty"`
 	Invited           []string                  `json:"invited,omitempty"`
@@ -21,5 +22,5 @@ type Game struct {
 	Steps             map[string]*Step          `json:"steps,omitempty"`
 	Gamers            map[string]*Gamer         `json:"gamers,omitempty"`
 	Characters        map[string]*GameCharacter `json:"characters,omitempty"`
-	StepResults       map[string][]*Result      `json:"step_results,omitempty"` // map of playerId and the list of results
+	StepResults       map[string][]*Result      `json:"result,omitempty"` // map of playerId and the list of results
 }
