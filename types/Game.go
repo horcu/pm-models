@@ -15,6 +15,7 @@ type Game struct {
 	StartTime         string                    `json:"start_time,omitempty"`
 	EndTime           string                    `json:"end_time,omitempty"`
 	IsVoting          bool                      `json:"is_voting,omitempty"`
+	IsResultStep      bool                      `json:"is_result_step,omitempty"`
 	Creator           *Player                   `json:"creator,omitempty"`
 	NightCycles       int                       `json:"cycles,omitempty"`
 	Invited           []string                  `json:"invited,omitempty"`
