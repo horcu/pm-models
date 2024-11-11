@@ -9,9 +9,7 @@ type Game struct {
 	CurrentStep       string               `json:"current_step"`
 	GroupId           string               `json:"group_id"`
 	Status            string               `json:"status"`
-	ServerName        string               `json:"server_name,omitempty"`
-	ServerAddress     string               `json:"server_ip,omitempty"`
-	ServerPort        int                  `json:"server_port,omitempty"`
+	Info              *ServerInfo          `json:"info,omitempty"`
 	StartTime         string               `json:"start_time,omitempty"`
 	EndTime           string               `json:"end_time,omitempty"`
 	IsVoting          bool                 `json:"is_voting,omitempty"`
