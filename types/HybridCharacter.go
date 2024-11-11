@@ -1,8 +1,7 @@
 package types
 
 type HybridCharacter struct {
-	InnocentCharacter
-	VillainCharacter
+	GameCharacter
 }
 
 func init() {
@@ -11,9 +10,12 @@ func init() {
 	i.IsInnocent = false
 }
 
-func (i *HybridCharacter) Side() {
+func (i *HybridCharacter) Side() string {
 
-	if i.TypeId == 3 {
-		return
+	if i.TypeId == 0 {
+		return "Innocent"
+	} else if i.TypeId == 1 {
+		return "Villain"
 	}
+	return "Hybrid"
 }
