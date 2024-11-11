@@ -1,9 +1,15 @@
 package types
 
-type VillainCharacter struct {
-	BaseCharacter
+func init() {
+	// set the  isInnocent property in the base class
+	i := &VillainCharacter{}
+	i.IsInnocent = false
 }
 
-func (v *VillainCharacter) LastKill() string {
+type VillainCharacter struct {
+	GameCharacter
+}
+
+func (i *VillainCharacter) LastKill() string {
 	return ""
 }
