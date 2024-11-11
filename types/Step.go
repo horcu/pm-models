@@ -8,7 +8,7 @@ type Step struct {
 	Command           string                    `json:"command"`
 	ShowTimer         bool                      `json:"show_timer"`
 	CharPhotoUrl      string                    `json:"char_photo_url"`
-	Characters        map[string]*GameCharacter `json:"characters"`
+	Characters        map[string]*GameCharacter `json:"characters,omitempty"`
 	StepIndex         int                       `json:"step_index"`
 	StartTime         string                    `json:"start_time"`
 	RequiresVote      bool                      `json:"requires_vote"`
@@ -16,7 +16,7 @@ type Step struct {
 	VillainVoteCount  int                       `json:"villain_vote_count"`
 	InnocentVoteCount int                       `json:"innocent_vote_count"`
 	EndTime           string                    `json:"end_time"`
-	Result            map[string][]*Result      `json:"result"` // map of player bin and list of results
+	Result            map[string][]*Result      `json:"result,omitempty"` // map of player bin and list of results
 	Allowed           []string                  `json:"allowed"`
 	SubSteps          map[string]*Step          `json:"sub_steps,omitempty"`
 }
