@@ -6,4 +6,5 @@ type ServerInfo struct {
 	Port      int    `json:"port,omitempty"`
 	CreatorId string `json:"creator_id,omitempty"`
 	GroupId   string `json:"group_id,omitempty"`
+	Level     string `json:"level,omitempty"`
 }
