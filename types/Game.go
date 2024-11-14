@@ -17,6 +17,6 @@ type Game struct {
 	AllVotesSubmitted bool                      `json:"all_votes_submitted,omitempty"`
 	Steps             map[string]*Step          `json:"steps,omitempty"`
 	Characters        map[string]*GameCharacter `json:"characters,omitempty"`
-	Gamers            map[string]interface{}    `json:"gamers,omitempty"`
+	Gamers            map[string]*Gamer         `json:"gamers,omitempty"`
 	StepResults       map[string][]*Result      `json:"result,omitempty"` // map of playerId and the list of results
 }
