@@ -2,6 +2,7 @@ package types
 
 type Game struct {
 	Bin               string                    `json:"bin"`
+	GroupId           string                    `json:"group_id,omitempty"`
 	IsDaytime         bool                      `json:"is_daytime,omitempty"`
 	ExplanationSeen   bool                      `json:"explanation_seen,omitempty"`
 	FirstDayCompleted bool                      `json:"first_day_completed,omitempty"`
