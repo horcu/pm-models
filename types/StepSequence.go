@@ -1,7 +1,7 @@
 package types
 
 type StepSequence struct {
-	SDuration string `json:"s_duration"`
-	CStep     Step   `json:"c_step"`
-	GameId    string `json:"game_id"`
+	SDuration   string `json:"s_duration"`
+	CurrentStep *Step  `json:"current_step"`
+	Game        *Game  `json:"game"`
 }
