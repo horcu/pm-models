@@ -4,20 +4,20 @@ import "strings"
 
 type AllowedAbilities string
 
-// Declare related constants for each weekday starting with index 1
+// Declare related constants for each ability starting with index 1
 const (
 	Vote        AllowedAbilities = "vote"
-	Mimic                        = "mimic"
-	Hide                         = "hide"
-	Retaliate                    = "retaliate"
-	Investigate                  = "investigate"
-	Poison                       = "poison"
-	Heal                         = "heal"
-	Mark                         = "mark"
-	Block                        = "block"
-	Direct                       = "direct"
-	Trick                        = "trick"
-	Kill                         = "kill"
+	Mimic       AllowedAbilities = "mimic"
+	Hide        AllowedAbilities = "hide"
+	Retaliate   AllowedAbilities = "retaliate"
+	Investigate AllowedAbilities = "investigate"
+	Poison      AllowedAbilities = "poison"
+	Heal        AllowedAbilities = "heal"
+	Mark        AllowedAbilities = "mark"
+	Block       AllowedAbilities = "block"
+	Direct      AllowedAbilities = "direct"
+	Trick       AllowedAbilities = "trick"
+	Kill        AllowedAbilities = "kill"
 )
 
 func (a AllowedAbilities) String() string {
