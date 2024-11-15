@@ -16,6 +16,7 @@ type Game struct {
 	IsInTransition    bool                      `json:"is_in_transition,omitempty"`
 	IsInDiscussion    bool                      `json:"is_in_discussion,omitempty"`
 	IsInDefend        bool                      `json:"is_in_defend,omitempty"`
+	IsIntroductions   bool                      `json:"is_introductions,omitempty"`
 	IsResultStep      bool                      `json:"is_result_step,omitempty"`
 	Creator           *Player                   `json:"creator,omitempty"`
 	NightCycles       int                       `json:"cycles,omitempty"`
