@@ -19,6 +19,7 @@ type Game struct {
 	IsIntroductions   bool                      `json:"is_introductions,omitempty"`
 	IsResultStep      bool                      `json:"is_result_step,omitempty"`
 	Creator           *Player                   `json:"creator,omitempty"`
+	MainSuspects      map[string][]*Gamer       `json:"main_suspects,omitempty"`
 	NightCycles       int                       `json:"cycles,omitempty"`
 	AllVotesSubmitted bool                      `json:"all_votes_submitted,omitempty"`
 	Steps             map[string]*Step          `json:"steps,omitempty"`
