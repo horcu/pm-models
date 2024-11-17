@@ -12,6 +12,9 @@ const (
 	RetaliatedAgainst State = "retaliatedAgainst"
 	Hidden            State = "hidden"
 	Tricked           State = "tricked"
+	Mimicked          State = "mimicked"
+	Killed            State = "killed"
+	Investigated      State = "investigated"
 	None              State = "none"
 )
 
