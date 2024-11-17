@@ -11,6 +11,7 @@ const (
 	Poisoned          State = "poisoned"
 	RetaliatedAgainst State = "retaliatedAgainst"
 	Hidden            State = "hidden"
+	Tricked           State = "tricked"
 	None              State = "none"
 )
 
