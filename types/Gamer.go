@@ -1,5 +1,7 @@
 package types
 
+import "github.com/horcu/pm-models/enums"
+
 type Gamer struct {
 	Bin         string              `json:"bin"`
 	GameId      string              `json:"game_id"`
@@ -12,4 +14,5 @@ type Gamer struct {
 	VotedSteps  []string            `json:"voted_steps"` // map of cycles and list of step bins
 	Abilities   map[string]*Ability `json:"abilities,omitempty"`
 	Metrics     *Metrics            `json:"metrics,omitempty"`
+	State       enums.State         `json:"state,omitempty"`
 }
