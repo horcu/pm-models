@@ -19,4 +19,11 @@ type Step struct {
 	Result            map[string][]*Result      `json:"result,omitempty"` // map of player bin and list of results
 	Allowed           []string                  `json:"allowed"`
 	SubSteps          map[string]*Step          `json:"sub_steps,omitempty"`
+	CanVoteHere       []string                  `json:"can_vote_here"`
+	YetToVote         []string                  `json:"ytv,omitempty"`
+}
+
+func (s *Step) GetNext(g *Game) *Step {
+
+	return g.Steps[s.NextStep]
 }
