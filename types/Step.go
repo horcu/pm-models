@@ -7,7 +7,7 @@ type Step struct {
 	Duration          string                    `json:"duration"`
 	Command           string                    `json:"command"`
 	ShowTimer         bool                      `json:"show_timer"`
-	CharPhotoUrl      string                    `json:"char_photo_url"`
+	Text              string                    `json:"text"`
 	Characters        map[string]*GameCharacter `json:"characters,omitempty"`
 	StepIndex         int                       `json:"step_index"`
 	StartTime         string                    `json:"start_time"`
