@@ -12,8 +12,8 @@ const (
 	GameOver    StepNames = "GameOver"
 	Transition  StepNames = "transition"
 	Defend      StepNames = "defend"
-	Eliminate   StepNames = "eliminate"
-	VoteStep    StepNames = "vote"
+	Eliminate   StepNames = "elimination"
+	//VoteStep    StepNames = "vote"
 )
 
 func (a StepNames) String() string {
