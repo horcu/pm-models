@@ -17,5 +17,5 @@ type Gamer struct {
 	Abilities   map[string]*Ability `json:"abilities,omitempty"`
 	Metrics     *Metrics            `json:"metrics,omitempty"`
 	State       enums.State         `json:"state,omitempty"`
-	Token       string              `json:"token,omitempty"`
+	Token       *string             `json:"token,omitempty"`
 }
