@@ -26,7 +26,7 @@ type Game struct {
 	Characters        map[string]*GameCharacter `json:"characters,omitempty"`
 	Gamers            map[string]*Gamer         `json:"gamers,omitempty"`
 	StepResults       map[string][]*Result      `json:"result,omitempty"` // map of playerId and the list of results
-	GameoverStepBin   string                    `json:"gameover_step_bin,omitempty"`
+	GameOverStepBin   string                    `json:"gameover_step_bin,omitempty"`
 	FirstStepBin      string                    `json:"first_step_bin,omitempty"`
 	GameplayBin       string                    `json:"gameplay_bin,omitempty"`
 }
