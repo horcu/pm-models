@@ -9,7 +9,7 @@ func init() {
 	i := &Hitman{}
 	i.Name = "Hitman"
 	i.ImageUrl = "/hitman.png"
-	i.TypeId = 1
+	i.SideId = 1
 }
 
 func (i *Hitman) LastKill() string {

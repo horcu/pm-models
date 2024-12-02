@@ -11,7 +11,7 @@ func init() {
 	i.Bin = "3b7e89b5-92e7-42c9-8675-8df8b58ba961"
 	i.Name = "Doctor"
 	i.ImageUrl = "/doctor.png"
-	i.TypeId = 1
+	i.SideId = 1
 	i.IsCorrupted = false
 
 }

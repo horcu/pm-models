@@ -12,6 +12,6 @@ func init() {
 	i.ImageUrl = "/saboteur.png"
 }
 
-func (i *Trickster) LastBlocked() string {
+func (i *Trickster) LastBlocked(g *Game) string {
 	return ""
 }

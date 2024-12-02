@@ -11,11 +11,5 @@ func init() {
 }
 
 func (i *HybridCharacter) Side() string {
-
-	if i.TypeId == 0 {
-		return "Innocent"
-	} else if i.TypeId == 1 {
-		return "Villain"
-	}
 	return "Hybrid"
 }
