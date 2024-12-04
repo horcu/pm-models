@@ -8,12 +8,12 @@ type StepNames string
 const (
 	Intro       StepNames = "introductions"
 	Discussions StepNames = "discussions"
-	Gameplay    StepNames = "Gameplay"
-	GameOver    StepNames = "GameOver"
+	Gameplay    StepNames = "gameplay"
+	GameOver    StepNames = "gameover"
 	Transition  StepNames = "transition"
 	Defend      StepNames = "defend"
 	Eliminate   StepNames = "elimination"
-	//VoteStep    StepNames = "vote"
+	Result      StepNames = "result"
 )
 
 func (a StepNames) String() string {
