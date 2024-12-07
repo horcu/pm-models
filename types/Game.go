@@ -30,4 +30,5 @@ type Game struct {
 	GameOverStepBin   string                    `json:"gameover_step_bin,omitempty"`
 	FirstStepBin      string                    `json:"first_step_bin,omitempty"`
 	GameplayBin       string                    `json:"gameplay_bin,omitempty"`
+	Winners           []*Gamer                  `json:"winners,omitempty"`
 }
